@@ -1,0 +1,20 @@
+﻿@using Playground.Enums;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<img src="@Url.Action("GetImage", "FileUpload", new { imageaction = ImageAction.Resize })" alt="...">
+<img src="@Url.Action("GetImage", "FileUpload", new { imageaction = ImageAction.WatermarkTxt })" alt="...">
+<img src="@Url.Action("GetImage", "FileUpload", new { imageaction = ImageAction.WatermarkImg })" alt="...">
+
+@ViewBag.FileName
+
+@using (Html.BeginForm("Index", "FileUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <label>Upload File:</label>
+    <input type="file" name="file" />
+    <input type="submit" />
+}
