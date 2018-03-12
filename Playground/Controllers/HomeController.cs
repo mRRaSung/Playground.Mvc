@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playground.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,6 +26,22 @@ namespace Playground.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [ChildActionOnly]
+        public ActionResult LINQ()
+        {
+            IList<LINQViewModel> result = new List<LINQViewModel>
+            {
+                new LINQViewModel{Id = 0, UserName = "AAA", Price = 15000, CreateTime = DateTime.Now },
+                new LINQViewModel{Id = 1, UserName = "BBB", Price = 25000, CreateTime = DateTime.Now.AddDays(1) },
+                new LINQViewModel{Id = 2, UserName = "CCC", Price = 35000, CreateTime = DateTime.Now.AddDays(2) },
+            };
+
+            //result = result.Where(x => x.Id == 1).ToList();
+
+
+            return View(result);
         }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using Playground.Enums;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -37,7 +35,7 @@ namespace Playground.Controllers
 
         public ActionResult GetImage(ImageAction imageaction)
         {
-            WebImage image = new WebImage(Server.MapPath("~/files/ActionFilter.jpg"));
+            WebImage image = new WebImage(Server.MapPath("~/files/pancake.jpg"));
 
             switch (imageaction)
             {
