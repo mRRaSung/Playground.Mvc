@@ -96,3 +96,11 @@ D:\_Ryan\_PROD\Playground.Mvc\Playground\obj\Debug\Playground.csprojResolveAssem
 D:\_Ryan\_PROD\Playground.Mvc\Playground\obj\Debug\Playground.csproj.CoreCompileInputs.cache
 D:\_Ryan\_PROD\Playground.Mvc\Playground\obj\Debug\Playground.dll
 D:\_Ryan\_PROD\Playground.Mvc\Playground\obj\Debug\Playground.pdb
+D:\_Ryan\_PROD\Playground.Mvc\Playground\bin\en-US\Playground.resources.dll
+D:\_Ryan\_PROD\Playground.Mvc\Playground\bin\ja-JP\Playground.resources.dll
+D:\_Ryan\_PROD\Playground.Mvc\Playground\obj\Debug\Playground.csproj.GenerateResource.Cache
+D:\_Ryan\_PROD\Playground.Mvc\Playground\obj\Debug\en-US\Playground.resources.dll
+D:\_Ryan\_PROD\Playground.Mvc\Playground\obj\Debug\ja-JP\Playground.resources.dll
+D:\_Ryan\_PROD\Playground.Mvc\Playground\obj\Debug\Playground.App_GlobalResources.Resources.resources
+D:\_Ryan\_PROD\Playground.Mvc\Playground\obj\Debug\Playground.App_GlobalResources.Resources.en-US.resources
+D:\_Ryan\_PROD\Playground.Mvc\Playground\obj\Debug\Playground.App_GlobalResources.Resources.ja-JP.resources

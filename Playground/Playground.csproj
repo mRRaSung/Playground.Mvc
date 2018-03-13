@@ -144,12 +144,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\i18nController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Enums\ImageAction.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="App_GlobalResources\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\i18nViewModel.cs" />
     <Compile Include="ViewModels\LINQViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
   </ItemGroup>
@@ -195,6 +202,7 @@
     <Content Include="Views\FileUpload\Index.cshtml" />
     <Content Include="Views\User\Logon.cshtml" />
     <Content Include="Views\Home\LINQ.cshtml" />
+    <Content Include="Views\i18n\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -212,6 +220,14 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App_GlobalResources\Resources.en-US.resx" />
+    <EmbeddedResource Include="App_GlobalResources\Resources.ja-JP.resx" />
+    <EmbeddedResource Include="App_GlobalResources\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

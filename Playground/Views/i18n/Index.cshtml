@@ -1,0 +1,29 @@
+﻿@model Playground.ViewModels.i18nViewModel
+
+@{
+    ViewBag.Title = "i18n";
+}
+
+<h2>i18n</h2>
+
+@using (Html.BeginForm("Index", "i18n", FormMethod.Post, new { id = "form" }))
+{
+    <div class="alert alert-info">
+        @Resources.TestString
+    </div>
+
+    @Html.DropDownListFor(x => x.Selected, Model.Languages, Model.Display, null)
+    @Html.Hidden("selectedLang")
+}
+
+@section scripts{
+    <script>
+        $(function () {
+            $('#Selected').change(function () {
+                $('#selectedLang').val($(this).val());
+                $('#form').submit();
+            });
+        });
+
+    </script>
+}
