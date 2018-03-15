@@ -104,3 +104,8 @@ D:\_Ryan\_PROD\Playground.Mvc\Playground\obj\Debug\ja-JP\Playground.resources.dl
 D:\_Ryan\_PROD\Playground.Mvc\Playground\obj\Debug\Playground.App_GlobalResources.Resources.resources
 D:\_Ryan\_PROD\Playground.Mvc\Playground\obj\Debug\Playground.App_GlobalResources.Resources.en-US.resources
 D:\_Ryan\_PROD\Playground.Mvc\Playground\obj\Debug\Playground.App_GlobalResources.Resources.ja-JP.resources
+D:\_Ryan\_PROD\Playground.Mvc\Playground\bin\EntityFramework.dll
+D:\_Ryan\_PROD\Playground.Mvc\Playground\bin\EntityFramework.SqlServer.dll
+D:\_Ryan\_PROD\Playground.Mvc\Playground\bin\EntityFramework.xml
+D:\_Ryan\_PROD\Playground.Mvc\Playground\bin\EntityFramework.SqlServer.xml
+D:\_Ryan\_PROD\Playground.Mvc\Playground\bin\zh-Hant\EntityFramework.resources.dll
