@@ -15,85 +15,22 @@
 <p>
     @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-success" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().CompanyName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().ContactName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().ContactTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Region)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().PostalCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Country)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Fax)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContactName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContactTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Region)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostalCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fax)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.CustomerID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.CustomerID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.CustomerID })
-            </td>
-        </tr>
-    }
-
-</table>
+<div id="unobtrusive">
+    @*內容*@
+    @Html.Partial("_PageList")
+</div>
 
 <div class="text-center">
+    @*@Html.PagedListPager(Model, generatePageUrl: page => Url.Action("Index", new { page }),
+        options: PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions
+        {
+          HttpMethod = "Get",
+          UpdateTargetId = "unobtrusive"
+          //OnComplete = "PageOnComplete"
+        }))*@
+
+
     @*@Html.PagedListPager(Model, generatePageUrl: page => Url.Action("Index", new { page }),
         options: PagedListRenderOptions.TwitterBootstrapPager)*@
 
@@ -122,34 +59,39 @@
 </div>
 
 <div class="text-center">
-    @Html.PagedListPager(Model, generatePageUrl: page => Url.Action("Index", new { page }))
+    @*@Html.PagedListPager(Model, generatePageUrl: page => Url.Action("Index", new { page }))*@
 </div>
 
 <div class="text-center">
-    @Html.PagedListPager(Model, generatePageUrl: page => Url.Action("Index", new { page }),
-                                    options: new PagedListRenderOptions
-                                    {
-                                        DisplayLinkToFirstPage = PagedListDisplayMode.Never,
-                                        DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
-                                        DisplayLinkToNextPage = PagedListDisplayMode.Never,
-                                        DisplayLinkToLastPage = PagedListDisplayMode.Never,
-                                        DisplayLinkToIndividualPages = false,
-                                        
-                                        PageCountAndCurrentLocationFormat = "第 {0} 頁 / 共 {1} 頁",
-                                        DisplayPageCountAndCurrentLocation = true,
-                                        ItemSliceAndTotalFormat = "顯示項目: {0} ~ {1} / 共 {2} 項",
-                                        DisplayItemSliceAndTotal = true
-                                    })
+    @*@Html.PagedListPager(Model, generatePageUrl: page => Url.Action("Index", new { page }),
+        options: new PagedListRenderOptions
+        {
+            DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+            DisplayLinkToNextPage = PagedListDisplayMode.Never,
+            DisplayLinkToLastPage = PagedListDisplayMode.Never,
+            DisplayLinkToIndividualPages = false,
+
+            PageCountAndCurrentLocationFormat = "第 {0} 頁 / 共 {1} 頁",
+            DisplayPageCountAndCurrentLocation = true,
+            ItemSliceAndTotalFormat = "顯示項目: {0} ~ {1} / 共 {2} 項",
+            DisplayItemSliceAndTotal = true
+        })*@
 </div>
 
 <div class="text-center">
-    @{ 
-        string pageInfo = string.Format($"第 {Model.PageNumber} 頁 / 共 {Model.PageCount} 頁");
-    }
+    @*@{
+            string pageInfo = string.Format($"第 {Model.PageNumber} 頁 / 共 {Model.PageCount} 頁");
+        }
 
-    <p>@pageInfo</p>
+        <p>@pageInfo</p>*@
 </div>
 
 
 
 
+
+@section scripts
+{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}

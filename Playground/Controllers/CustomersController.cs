@@ -17,7 +17,20 @@ namespace Playground.Controllers
 
         private int pageSize = 4;
 
-        // GET: Customers
+        //public ActionResult Index(int page = 1)
+        //{
+        //    int currentPage = page < 1 ? 1 : page;
+
+        //    var customers = db.Customers.OrderBy(x => x.CustomerID);
+
+        //    var result = customers.ToPagedList(currentPage, pageSize);
+
+        //    return View(result);
+        //}
+
+        /// <summary>
+        /// Ajax
+        /// </summary>
         public ActionResult Index(int page = 1)
         {
             int currentPage = page < 1 ? 1 : page;
@@ -26,7 +39,7 @@ namespace Playground.Controllers
 
             var result = customers.ToPagedList(currentPage, pageSize);
 
-            return View(result);
+            return Request.IsAjaxRequest() ? (ActionResult)PartialView("_PageList", result) : View(result);
         }
 
         // GET: Customers/Details/5
