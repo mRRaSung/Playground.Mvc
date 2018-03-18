@@ -82,7 +82,8 @@
                                 options: PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions
                                 {
                                     HttpMethod = "Get",
-                                    UpdateTargetId = "unobtrusive"
+                                    UpdateTargetId = "unobtrusive",
+                                    //OnComplete = "PagedOnComplete"
                                 }))
 </div>
 

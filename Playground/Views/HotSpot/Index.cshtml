@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Playground.ViewModels.HotSpotViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.spot_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.company)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.district)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apparatus_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.longitude)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.twd97X)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.twd97Y)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.wgs84aX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.wgs84aY)
+        </th>*@
+        @*<th></th>*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.company)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.district)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apparatus_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.latitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.longitude)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.twd97X)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.twd97Y)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.wgs84aX)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.wgs84aY)
+        </td>*@
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>*@
+    </tr>
+}
+
+</table>

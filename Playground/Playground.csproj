@@ -161,6 +161,7 @@
     <Compile Include="Controllers\FeedController.cs" />
     <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HotSpotController.cs" />
     <Compile Include="Controllers\i18nController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Enums\ImageAction.cs" />
@@ -288,6 +289,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\HotSpotViewModel.cs" />
     <Compile Include="ViewModels\i18nViewModel.cs" />
     <Compile Include="ViewModels\LINQViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -361,6 +363,7 @@
     <Content Include="Views\i18n\Index.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Customers\_PageList.cshtml" />
+    <Content Include="Views\HotSpot\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
