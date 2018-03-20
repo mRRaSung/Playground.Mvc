@@ -1,5 +1,6 @@
 ﻿@*@model IEnumerable<Playground.ViewModels.HotSpotViewModel>*@
-@model IPagedList<Playground.ViewModels.HotSpotViewModel>
+@*@model IPagedList<Playground.ViewModels.HotSpotViewModel>*@
+@model Playground.ViewModels.HotSpotViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -17,7 +18,8 @@
         <div class="col-lg-3">
             <div class="input-group">
                 <span class="input-group-addon">區域</span>
-                @Html.DropDownList("dist", (IEnumerable<SelectListItem>)ViewBag.Districts, "ALL", new { @class = "form-control" })
+                @*@Html.DropDownList("Dist", (IEnumerable<SelectListItem>)ViewBag.Districts, "ALL", new { @class = "form-control" })*@
+                @Html.DropDownListFor(m => m.Dist, (IEnumerable<SelectListItem>)ViewBag.Districts, "ALL", new { @class = "form-control" })
             </div>
         </div>
 
@@ -30,35 +32,33 @@
     }
 </div>
 
-
-@ViewBag.dist
-@Html.PagedListPager(Model, generatePageUrl: pageNum => Url.Action("Index", new { pageNum, ViewBag.dist }))
+@Html.PagedListPager(Model.Items, generatePageUrl: pageNum => Url.Action("Index", new { pageNum, Model.Dist }))
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().spot_name)
+            @Html.DisplayNameFor(model => model.Items.FirstOrDefault().spot_name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().type)
+            @Html.DisplayNameFor(model => model.Items.FirstOrDefault().type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().company)
+            @Html.DisplayNameFor(model => model.Items.FirstOrDefault().company)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().district)
+            @Html.DisplayNameFor(model => model.Items.FirstOrDefault().district)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().address)
+            @Html.DisplayNameFor(model => model.Items.FirstOrDefault().address)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().apparatus_name)
+            @Html.DisplayNameFor(model => model.Items.FirstOrDefault().apparatus_name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().latitude)
+            @Html.DisplayNameFor(model => model.Items.FirstOrDefault().latitude)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().longitude)
+            @Html.DisplayNameFor(model => model.Items.FirstOrDefault().longitude)
         </th>
         @*<th>
                 @Html.DisplayNameFor(model => model.twd97X)
@@ -75,7 +75,7 @@
         @*<th></th>*@
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.Items)
     {
         <tr>
             <td>

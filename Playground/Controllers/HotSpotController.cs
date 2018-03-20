@@ -15,10 +15,10 @@ namespace Playground.Controllers
     {
         private int PageSize = 10;
 
-        [Route("~/HotSpot/{pageNum:int}", Order = 2)]
-        [Route("~/HotSpot/{dist}/{pageNum:int}", Order = 1)]
+        [Route("~/HotSpot/{dist:regex(^[\u4E00-\u9fa5]+)}/{pageNum:int?}", Order = 1)]
+        [Route("~/HotSpot/{pageNum:int?}", Order = 2)]
         //[OutputCache(Duration = 300, VaryByParam = "*")]
-        public async Task<ActionResult> Index(string dist = "", int pageNum = 1)
+        public async Task<ActionResult> Index(HotSpotViewModel model)
         {
             //string targetUrl = "http://data.ntpc.gov.tw/od/data/api/04958686-1B92-4B74-889D-9F34409B272B?$format=json";
 
@@ -33,21 +33,20 @@ namespace Playground.Controllers
             //return View(collection);
 
             //Districts
-            ViewBag.Districts = await this.DistrictSelectList(dist);
-            //ViewBag.SelectedDistrict = dist;
-
-            ViewBag.dist = dist;
+            ViewBag.Districts = await this.DistrictSelectList(model.Dist);
 
             var result = await GetHotSpotData();
 
-            if (!string.IsNullOrWhiteSpace(dist)){
-                result = result.Where(x => x.district == dist);
+            if (!string.IsNullOrWhiteSpace(model.Dist)){
+                result = result.Where(x => x.district == model.Dist);
             }
 
-            return View(result.ToPagedList(pageNum, PageSize));
+            model.Items = result.ToPagedList(model.PageNum, PageSize);
+
+            return View(model);
         }
 
-        private async Task<IEnumerable<HotSpotViewModel>> GetHotSpotData()
+        private async Task<IEnumerable<HotSpotItem>> GetHotSpotData()
         {
             //try to get cache exist
             string cacheName = "WIFI_HOTSPOT";
@@ -60,18 +59,18 @@ namespace Playground.Controllers
             }
             else
             {
-                return cacheContents.Value as IEnumerable<HotSpotViewModel>;
+                return cacheContents.Value as IEnumerable<HotSpotItem>;
             }
         }
 
-        private async Task<IEnumerable<HotSpotViewModel>> RetriveHotSpotData(string cacheName)
+        private async Task<IEnumerable<HotSpotItem>> RetriveHotSpotData(string cacheName)
         {
             string targetURI = "http://data.ntpc.gov.tw/od/data/api/04958686-1B92-4B74-889D-9F34409B272B?$format=json";
 
             HttpClient client = new HttpClient();
             client.MaxResponseContentBufferSize = Int32.MaxValue;
             var response = await client.GetStringAsync(targetURI);
-            var collection = JsonConvert.DeserializeObject<IEnumerable<HotSpotViewModel>>(response);
+            var collection = JsonConvert.DeserializeObject<IEnumerable<HotSpotItem>>(response);
 
             //init cache
             ObjectCache cacheItem = MemoryCache.Default;
