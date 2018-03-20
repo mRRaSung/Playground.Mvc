@@ -7,13 +7,18 @@ using System.Net.Http;
 using System.Runtime.Caching;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using PagedList;
 
 namespace Playground.Controllers
 {
     public class HotSpotController : Controller
     {
+        private int PageSize = 10;
+
+        [Route("~/HotSpot/{pageNum:int}", Order = 2)]
+        [Route("~/HotSpot/{dist}/{pageNum:int}", Order = 1)]
         //[OutputCache(Duration = 300, VaryByParam = "*")]
-        public async Task<ActionResult> Index(string dist)
+        public async Task<ActionResult> Index(string dist = "", int pageNum = 1)
         {
             //string targetUrl = "http://data.ntpc.gov.tw/od/data/api/04958686-1B92-4B74-889D-9F34409B272B?$format=json";
 
@@ -27,11 +32,11 @@ namespace Playground.Controllers
 
             //return View(collection);
 
-
-
             //Districts
             ViewBag.Districts = await this.DistrictSelectList(dist);
-            ViewBag.SelectedDistrict = dist;
+            //ViewBag.SelectedDistrict = dist;
+
+            ViewBag.dist = dist;
 
             var result = await GetHotSpotData();
 
@@ -39,7 +44,7 @@ namespace Playground.Controllers
                 result = result.Where(x => x.district == dist);
             }
 
-            return View(result);
+            return View(result.ToPagedList(pageNum, PageSize));
         }
 
         private async Task<IEnumerable<HotSpotViewModel>> GetHotSpotData()

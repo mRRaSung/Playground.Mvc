@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Playground.ViewModels.HotSpotViewModel>
+﻿@*@model IEnumerable<Playground.ViewModels.HotSpotViewModel>*@
+@model IPagedList<Playground.ViewModels.HotSpotViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -7,8 +8,8 @@
 <h2>Index</h2>
 
 @*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 
 <div class="row well">
     @using (Html.BeginForm())
@@ -16,7 +17,7 @@
         <div class="col-lg-3">
             <div class="input-group">
                 <span class="input-group-addon">區域</span>
-                @Html.DropDownList("dist", (IEnumerable<SelectListItem>)ViewBag.Districts, null, new { @class = "form-control"})
+                @Html.DropDownList("dist", (IEnumerable<SelectListItem>)ViewBag.Districts, "ALL", new { @class = "form-control" })
             </div>
         </div>
 
@@ -29,91 +30,96 @@
     }
 </div>
 
+
+@ViewBag.dist
+@Html.PagedListPager(Model, generatePageUrl: pageNum => Url.Action("Index", new { pageNum, ViewBag.dist }))
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.spot_name)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().spot_name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.type)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.company)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().company)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.district)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().district)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.address)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().address)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.apparatus_name)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().apparatus_name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.latitude)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().latitude)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.longitude)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().longitude)
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.twd97X)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.twd97Y)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.wgs84aX)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.wgs84aY)
-        </th>*@
+                @Html.DisplayNameFor(model => model.twd97X)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.twd97Y)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.wgs84aX)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.wgs84aY)
+            </th>*@
         @*<th></th>*@
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.spot_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.company)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.district)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apparatus_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.latitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.longitude)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.twd97X)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.twd97Y)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.wgs84aX)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.wgs84aY)
-        </td>*@
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>*@
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.spot_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.company)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.district)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apparatus_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.longitude)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.twd97X)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.twd97Y)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.wgs84aX)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.wgs84aY)
+                </td>*@
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.id })
+                </td>*@
+        </tr>
+    }
 
 </table>

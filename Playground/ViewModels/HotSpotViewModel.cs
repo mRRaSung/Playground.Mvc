@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Playground.ViewModels
 {
-    public class HotSpotViewModel
+    public class HotSpotViewModel : IPage
     {
         [Display(Name = "編號")]
         public string id { get; set; }
@@ -23,5 +23,12 @@ namespace Playground.ViewModels
         public string twd97Y { get; set; }
         public string wgs84aX { get; set; }
         public string wgs84aY { get; set; }
+
+        public string dist { get; set; }
+        public int PageNum { get; set; }
+    }
+
+    interface IPage{
+        int PageNum { get; set; }
     }
 }
